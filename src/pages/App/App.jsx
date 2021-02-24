@@ -14,6 +14,9 @@ import UpdateProfile from '../UpdateProfile/UpdateProfile'
 import AddResource from '../AddResource/AddResource'
 import AddNewResourceToCollection from '../AddNewResourceToCollection/AddNewResourceToCollection'
 import AddCollection from '../AddCollection/AddCollection'
+import * as userService from '../../services/userService'
+import * as resourceApi from '../../services/resourceApi'
+import * as collectionApi from '../../services/collectionApi'
 import "./App.css";
 
 class App extends Component {
