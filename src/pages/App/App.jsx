@@ -43,6 +43,10 @@ class App extends Component {
     // )
   }
 
+  handleAddCollection = async(newCollectionData) => {
+    const newCollection = await collectionApi.create(newCollectionData)
+  }
+
   render() {
     const { user } = this.state
     return (
@@ -140,7 +144,7 @@ class App extends Component {
         <Route 
           exact path="/addcollection"
           render={()=>
-          user ? <AddCollection /> : <Redirect to="/login" /> 
+          user ? <AddCollection handleAddCollection={this.handleAddCollection} user={this.state.user}/> : <Redirect to="/login" /> 
           }
         />
       </>
