@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const collectionSchema = new Schema({
-  creator: {type: Schema.Types.ObjectId, ref:'User'},
+  creator: [{type: Schema.Types.ObjectId, ref:'User'}],
   createdByName: String,
   createdByAvatar: String,
   title: String,
