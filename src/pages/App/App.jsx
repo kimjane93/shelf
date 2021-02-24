@@ -17,7 +17,6 @@ import AddCollection from '../AddCollection/AddCollection'
 import * as userService from '../../services/userService'
 import * as resourceApi from '../../services/resourceApi'
 import * as collectionApi from '../../services/collectionApi'
-import 'semantic-ui-css/semantic.min.css'
 import "./App.css";
 
 class App extends Component {
@@ -42,6 +41,10 @@ class App extends Component {
 
     //   }), () =>  this.props.history.push('/profile')
     // )
+  }
+
+  handleAddCollection = async(newCollectionData) => {
+    const newCollection = await collectionApi.create(newCollectionData)
   }
 
   render() {
@@ -141,7 +144,7 @@ class App extends Component {
         <Route 
           exact path="/addcollection"
           render={()=>
-          user ? <AddCollection /> : <Redirect to="/login" /> 
+          user ? <AddCollection handleAddCollection={this.handleAddCollection} user={this.state.user}/> : <Redirect to="/login" /> 
           }
         />
       </>

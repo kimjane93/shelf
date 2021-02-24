@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {Form} from 'semantic-ui-react'
+
 
 let blankFormData = {
   title: "",
@@ -14,7 +14,6 @@ class AddCollection extends Component {
     formData: {
       title: "",
       description: "",
-      type: "",
     }
    }
 
@@ -35,7 +34,7 @@ class AddCollection extends Component {
     };
     this.setState({
       formData,
-      invalidForm: !this.formRef.current.checkValidity(),
+      // invalidForm: !this.formRef.current.checkValidity(),
     });
   };
 
@@ -43,11 +42,17 @@ class AddCollection extends Component {
     return ( 
       <>
         <h3>Add Collection</h3>
-          <Form>
-              <Form.Input fluid label='Title' placeholder='Title' name='title' value={this.state.formData.title} onChange={this.handleChange} required />
-              <Form.Input fluid label='Description' placeholder='Description' name='description' value={this.state.formData.title} onChange={this.handleChange} required />
-            <Form.Button>Submit</Form.Button>
-          </Form>
+          <form ref={this.formRef} onSubmit={this.handleSubmit}>
+            <div>
+              <label>Title</label>
+              <input type="text" name="title" value={this.state.formData.title} onChange={this.handleChange} required/>
+            </div>
+            <div>
+              <label>Description</label>
+              <input type="text" name="description" value={this.state.formData.description} onChange={this.handleChange} required/>
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
+          </form>
       </>
      );
   }
