@@ -117,7 +117,10 @@ class App extends Component {
         <Route 
           exact path="/profile"
           render={()=>
-          user ? <Profile /> : <Redirect to="/login" /> 
+          user ? 
+            <Profile 
+              collections={this.state.collections}
+            /> : <Redirect to="/login" /> 
           }
         />
         <Route 
