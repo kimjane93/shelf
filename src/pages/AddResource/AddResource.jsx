@@ -22,24 +22,25 @@ class AddResource extends Component {
 
   handleChange = (e) => {
     const formData = {
-        ...this.state.formData, [e.target.name]: e.target.value,
-    }
+      ...this.state.formData,
+      [e.target.name]: e.target.value,
+    };
     this.setState({
-        formData: formData, 
-        invalidForm: !this.formRef.current.checkValidity(),
-    })
+      formData: formData,
+      invalidForm: !this.formRef.current.checkValidity(),
+    });
   };
 
   handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
     this.props.handleAddResource(this.state.formData);
     this.setState((state) => ({
       formData: blankFormData,
     }));
-  }
+  };
 
   render() {
-    let types = ['website', 'audio', 'graphic', 'book', 'article', 'video']
+    let types = ["website", "audio", "graphic", "book", "article", "video"];
     return (
       <>
         <h2>Resources</h2>
@@ -74,21 +75,21 @@ class AddResource extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <label htmlFor="resource_title">Type</label>
-              <ul>
-                {types.map((type) => (
-                <li>
-                  <label htmlFor="resource_type">{type}</label>
-                  <input
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Type of Resource</label>
+                  <select 
+                  class="form-control" id="exampleFormControlSelect1" 
                   name="type"
-                  id="resource_type"
-                  type="radio"
-                  value={type}
-                  required
-                />
-                </li>
-                ))}
-              </ul>
+                  value={this.state.formData.type}
+                  onChange={this.handleChange}
+                  >
+                  {types.map((type)=> (
+                    <option 
+                    value={type}
+                    >{type}</option>
+                  ))}
+                  </select>
+                </div>
             </div>
             <button type="submit" disabled={this.state.invalidForm}>
               Create Resource
