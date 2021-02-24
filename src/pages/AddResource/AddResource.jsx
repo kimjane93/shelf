@@ -39,6 +39,7 @@ class AddResource extends Component {
   }
 
   render() {
+    let types = ['website', 'audio', 'graphic', 'book', 'article', 'video']
     return (
       <>
         <h2>Resources</h2>
@@ -74,14 +75,20 @@ class AddResource extends Component {
                 required
               />
               <label htmlFor="resource_title">Type</label>
-              <input
-                name="type"
-                id="resource_type"
-                type="text"
-                value={this.state.formData.type}
-                onChange={this.handleChange}
-                required
-              />
+              <ul>
+                {types.map((type) => (
+                <li>
+                  <label htmlFor="resource_type">{type}</label>
+                  <input
+                  name="type"
+                  id="resource_type"
+                  type="radio"
+                  value={type}
+                  required
+                />
+                </li>
+                ))}
+              </ul>
             </div>
             <button type="submit" disabled={this.state.invalidForm}>
               Create Resource
