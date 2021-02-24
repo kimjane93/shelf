@@ -3,14 +3,14 @@ const BASE_URL = "/api/resources/";
 
 export function create(resourceData){
     return fetch(
-        BASE_URL, 
+        `${BASE_URL}createresource`, 
         {
             method: "POST",
             headers: {
               "content-type": "application/json",
               Authorization: "Bearer " + tokenService.getToken(),
             },
-            body: JSON.stringify(resource)
+            body: JSON.stringify(resourceData)
           },
           { mode: "cors" }   
     )
