@@ -34,6 +34,15 @@ class App extends Component {
     this.setState({ user: authService.getUser() });
   };
 
+  handleAddResource = async(newResourceData) => {
+    const newResource = await resourceApi.create(newResourceData)
+    // this.setState(
+    //   (state) => ({
+
+    //   }), () =>  this.props.history.push('/profile')
+    // )
+  }
+
   render() {
     const { user } = this.state
     return (
@@ -113,8 +122,13 @@ class App extends Component {
         />
         <Route 
           exact path="/addresource"
-          render={()=>
-          user ? <AddResource /> : <Redirect to="/login" /> 
+          render={({history})=>
+          user ? 
+          <AddResource
+            history={history}
+            handleAddResource={this.handleAddResource}
+            user={this.state.user}
+          /> : <Redirect to="/login" /> 
           }
         />
         <Route 
