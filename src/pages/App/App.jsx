@@ -17,6 +17,7 @@ import AddCollection from '../AddCollection/AddCollection'
 import * as userService from '../../services/userService'
 import * as resourceApi from '../../services/resourceApi'
 import * as collectionApi from '../../services/collectionApi'
+import 'semantic-ui-css/semantic.min.css'
 import "./App.css";
 
 class App extends Component {
