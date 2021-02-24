@@ -5,6 +5,15 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from '../Users/Users'
+import Chat from '../Chat/Chat'
+import HomePage from '../HomePage/HomePage'
+import Profile from '../Profile/Profile'
+import Search from '../Search/Search'
+import UpdateCollection from '../UpdateCollection/UpdateCollection'
+import UpdateProfile from '../UpdateProfile/UpdateProfile'
+import AddResource from '../AddResource/AddResource'
+import AddNewResourceToCollection from '../AddNewResourceToCollection/AddNewResourceToCollection'
+import AddCollection from '../AddCollection/AddCollection'
 import "./App.css";
 
 class App extends Component {
@@ -61,6 +70,60 @@ class App extends Component {
           path="/users"
           render={() =>
             user ? <Users /> : <Redirect to="/login" />
+          }
+        />
+        <Route 
+          exact path="/chat"
+          render={()=>
+          user ? <Chat /> : <Redirect to="/login" /> 
+        }
+        />
+        <Route 
+          exact path="/home"
+          render={()=>
+          user ? <HomePage /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/profile"
+          render={()=>
+          user ? <Profile /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/search"
+          render={()=>
+          user ? <Search /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/updatecollection"
+          render={()=>
+          user ? <UpdateCollection /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/updateprofile"
+          render={()=>
+          user ? <UpdateProfile /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/addresource"
+          render={()=>
+          user ? <AddResource /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/addnewresource"
+          render={()=>
+          user ? <AddNewResourceToCollection /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/addcollection"
+          render={()=>
+          user ? <AddCollection /> : <Redirect to="/login" /> 
           }
         />
       </>
