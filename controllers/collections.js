@@ -4,6 +4,7 @@ const User = require('../models/user')
 
 module.exports = {
   create,
+  getMyCollections,
 }
 
 //Create a new collection
@@ -16,6 +17,18 @@ function create(req, res){
   Collection.create(req.body)
   .then((collection) => {
     res.json(collection)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function getMyCollections(req, res){
+  console.log(req.params.id)
+  Collection.find({creator: req.params.id})
+  .then((collections) => {
+    console.log(collections)
+    res.json(collections)
   })
   .catch((err) => {
     res.json(err)

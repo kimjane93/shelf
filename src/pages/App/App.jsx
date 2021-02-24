@@ -22,7 +22,16 @@ import "./App.css";
 class App extends Component {
   state = {
     user: authService.getUser(),
+    collections: [],
   };
+
+  async componentDidMount(){
+    if(this.state.user){
+      const collections = await collectionApi.getMyCollections(this.state.user)
+      console.log(`These are the returned collections! ${collections}`)
+      this.setState({collections: collections})
+    }
+  }
 
   handleLogout = () => {
     authService.logout();
@@ -45,6 +54,11 @@ class App extends Component {
 
   handleAddCollection = async(newCollectionData) => {
     const newCollection = await collectionApi.create(newCollectionData)
+    this.setState(
+      (state) => ({
+        collections: [...state.collections, newCollection]
+      }), () =>  this.props.history.push('/profile')
+    )
   }
 
   render() {
@@ -143,8 +157,8 @@ class App extends Component {
         />
         <Route 
           exact path="/addcollection"
-          render={()=>
-          user ? <AddCollection handleAddCollection={this.handleAddCollection} user={this.state.user}/> : <Redirect to="/login" /> 
+          render={({ history })=>
+          user ? <AddCollection handleAddCollection={this.handleAddCollection} user={this.state.user} history={history}/> : <Redirect to="/login" /> 
           }
         />
       </>
