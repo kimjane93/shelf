@@ -8,6 +8,7 @@ const collectionsCtrl = require('../controllers/collections')
 //Protected Routes
 router.use(require('../config/auth'))
 router.post('/', checkAuth, collectionsCtrl.create)
+router.get('/myCollections/:id', checkAuth, collectionsCtrl.getMyCollections)
 
 function checkAuth(req, res, next) {
   if (req.user) return next();

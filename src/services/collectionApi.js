@@ -15,3 +15,12 @@ export function create(collection) {
     { mode: "cors" }
   ).then((res) => res.json());
 }
+
+export function getMyCollections(user){
+  return fetch(`${BASE_URL}/myCollections/${user._id}`, 
+  {
+    headers: { Authorization: "Bearer " + tokenService.getToken() },
+  },
+  { mode: "cors" }
+  ).then((res) => res.json());
+}

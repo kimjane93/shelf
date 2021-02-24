@@ -43,11 +43,11 @@ class AddCollection extends Component {
       <>
         <h3>Add Collection</h3>
           <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            <div>
+            <div class="form-group">
               <label>Title</label>
               <input type="text" name="title" value={this.state.formData.title} onChange={this.handleChange} required/>
             </div>
-            <div>
+            <div class="form-group">
               <label>Description</label>
               <input type="text" name="description" value={this.state.formData.description} onChange={this.handleChange} required/>
             </div>
