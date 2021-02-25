@@ -10,8 +10,10 @@ import HomePage from '../HomePage/HomePage'
 import Profile from '../Profile/Profile'
 import Search from '../Search/Search'
 import UpdateCollection from '../UpdateCollection/UpdateCollection'
+import ShowCollection from '../ShowCollection/ShowCollection'
 import UpdateProfile from '../UpdateProfile/UpdateProfile'
 import AddResource from '../AddResource/AddResource'
+import ShowResource from '../ShowResource/ShowResource'
 import AddNewResourceToCollection from '../AddNewResourceToCollection/AddNewResourceToCollection'
 import AddCollection from '../AddCollection/AddCollection'
 import * as userService from '../../services/userService'
@@ -136,6 +138,16 @@ class App extends Component {
           }
         />
         <Route 
+          exact path="/showcollection"
+          render={({ location })=>
+          user ? 
+            <ShowCollection 
+              location={location}
+              user={this.state.user}
+            /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
           exact path="/updateprofile"
           render={()=>
           user ? <UpdateProfile /> : <Redirect to="/login" /> 
@@ -156,6 +168,12 @@ class App extends Component {
           exact path="/addnewresource"
           render={()=>
           user ? <AddNewResourceToCollection /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/showresource"
+          render={()=>
+          user ? <ShowResource /> : <Redirect to="/login" /> 
           }
         />
         <Route 
