@@ -12,6 +12,14 @@ function Profile({collections, user}){
               <>
               <h4>{collection.title}</h4>
               <p>{collection.description}</p>
+              <Link
+                to={{
+                  pathname: "/showcollection",
+                  state: {collection}
+                }}
+              >
+                Details
+              </Link>
               </>
             ))}
           </div>
