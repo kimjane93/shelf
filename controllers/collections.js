@@ -5,6 +5,7 @@ const User = require('../models/user')
 module.exports = {
   create,
   getMyCollections,
+  addNewResource,
 }
 
 //Create a new collection
@@ -24,11 +25,25 @@ function create(req, res){
 }
 
 function getMyCollections(req, res){
-  console.log(req.params.id)
   Collection.find({creator: req.params.id})
+  .populate("resources")
   .then((collections) => {
-    console.log(collections)
     res.json(collections)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function addNewResource(req, res){
+  Collection.findById(req.body.collection)
+  .then((collection) => {
+    collection.resources.push(req.body.resource)
+    collection.save()
+    // To do: populate is not working properly here
+    collection.populate("resources")
+    console.log(collection.resources)
+    res.json(collection)
   })
   .catch((err) => {
     res.json(err)
