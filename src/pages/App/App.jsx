@@ -167,7 +167,10 @@ class App extends Component {
         <Route 
           exact path="/addnewresource"
           render={()=>
-          user ? <AddNewResourceToCollection /> : <Redirect to="/login" /> 
+          user ? 
+          <AddNewResourceToCollection 
+            collections={this.state.collections}
+          /> : <Redirect to="/login" /> 
           }
         />
         <Route 
