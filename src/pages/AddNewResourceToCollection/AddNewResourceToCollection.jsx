@@ -6,7 +6,8 @@ class AddNewResourceToCollection extends Component {
   state = { 
     invalidForm: false,
     formData: {
-      collection: ""
+      collection: "",
+      resource: this.props.history.location.state
     }
    }
 
@@ -14,7 +15,7 @@ class AddNewResourceToCollection extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleSearch(this.state.formData);
+    this.props.handleAddNewResourceToCollection(this.state.formData);
   };
 
   handleChange = (e) => {
@@ -35,7 +36,7 @@ class AddNewResourceToCollection extends Component {
         <form ref={this.formRef} onSubmit={this.handleSubmit}>
           {this.props.collections.map((collection) => (
             <div>
-              <input type="radio" name="collection"/>
+              <input type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange} />
               <label>{collection.title}</label>
               <hr />
             </div>

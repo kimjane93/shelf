@@ -24,3 +24,18 @@ export function getMyCollections(user){
   { mode: "cors" }
   ).then((res) => res.json());
 }
+
+export function addNewResource(newResourceCollectionData){
+  return fetch(
+    `${BASE_URL}/addNewResource`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      },
+      body: JSON.stringify(newResourceCollectionData)
+    },
+    { mode: "cors" }
+  ).then((res) => res.json());
+}

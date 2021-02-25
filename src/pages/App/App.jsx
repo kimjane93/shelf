@@ -25,6 +25,7 @@ class App extends Component {
   state = {
     user: authService.getUser(),
     collections: [],
+    newResource: "",
   };
 
   async componentDidMount(){
@@ -47,11 +48,14 @@ class App extends Component {
 
   handleAddResource = async(newResourceData) => {
     const newResource = await resourceApi.create(newResourceData)
-    // this.setState(
-    //   (state) => ({
-
-    //   }), () =>  this.props.history.push('/profile')
-    // )
+    this.setState(
+      (state) => ({
+        newResource: newResource._id
+      }), () =>  this.props.history.push({
+        pathname: '/addnewresource',
+        state: this.state.newResource
+      })
+    )
   }
 
   handleAddCollection = async(newCollectionData) => {
@@ -60,6 +64,20 @@ class App extends Component {
       (state) => ({
         collections: [...state.collections, newCollection]
       }), () =>  this.props.history.push('/profile')
+    )
+  }
+
+  handleAddNewResourceToCollection = async(newResourceCollectionData) => {
+    console.log(newResourceCollectionData)
+    const collection = await collectionApi.addNewResource(newResourceCollectionData)
+    this.setState(
+      (state) => ({
+        collections: [...state.collections, collection]
+      }),
+      () => this.props.history.push({
+        pathname: '/showcollection',
+        state: collection
+      })
     )
   }
 
@@ -139,9 +157,10 @@ class App extends Component {
         />
         <Route 
           exact path="/showcollection"
-          render={({ location })=>
+          render={({ location, history })=>
           user ? 
             <ShowCollection 
+              history={history}
               location={location}
               user={this.state.user}
             /> : <Redirect to="/login" /> 
@@ -166,10 +185,13 @@ class App extends Component {
         />
         <Route 
           exact path="/addnewresource"
-          render={()=>
+          render={({history, location})=>
           user ? 
           <AddNewResourceToCollection 
+            history={history}
+            location={location}
             collections={this.state.collections}
+            handleAddNewResourceToCollection={this.handleAddNewResourceToCollection}
           /> : <Redirect to="/login" /> 
           }
         />
