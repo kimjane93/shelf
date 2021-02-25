@@ -26,6 +26,7 @@ function create(req, res){
 
 function getMyCollections(req, res){
   Collection.find({creator: req.params.id})
+  .populate("resources")
   .then((collections) => {
     res.json(collections)
   })
@@ -35,14 +36,13 @@ function getMyCollections(req, res){
 }
 
 function addNewResource(req, res){
-  console.log(req.body)
   Collection.findById(req.body.collection)
   .then((collection) => {
-    console.log(collection)
     collection.resources.push(req.body.resource)
     collection.save()
-    collection.populate('resources')
-    console.log(`This is the updated collection: ${collection.resources}`)
+    // To do: populate is not working properly here
+    collection.populate("resources")
+    console.log(collection.resources)
     res.json(collection)
   })
   .catch((err) => {

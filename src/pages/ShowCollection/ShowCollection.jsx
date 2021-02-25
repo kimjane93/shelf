@@ -14,10 +14,12 @@ class ShowCollection extends Component {
     return ( 
       <>
         <h1>This is the Show Collection Page</h1>
-        <p>{collection.title}</p>
+        <h4>{collection.title}</h4>
         <p>{collection.description}</p>
+        <p><strong>Resources</strong></p>
+        <hr />
         {collection.resources.map((resource) => (
-          <p>{resource}</p>
+          <p>{resource.title}</p>
         ))}
       </>
      );
