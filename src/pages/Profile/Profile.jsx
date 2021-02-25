@@ -15,7 +15,7 @@ function Profile({collections, user}){
               <Link
                 to={{
                   pathname: "/showcollection",
-                  state: {collection}
+                  state: collection
                 }}
               >
                 Details

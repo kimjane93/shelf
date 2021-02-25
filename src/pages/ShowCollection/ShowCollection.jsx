@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 class ShowCollection extends Component {
   state = {  }
   render() { 
-    if (this.props.history.location.state){
-      let collection = this.props.history.location.state
-    } else {
+    if (this.props.location.state.collection){
       let collection = this.props.location.state.collection
+    } else {
+      let collection = this.props.history.location.state
     }
     const collection = this.props.location.state
     return ( 
