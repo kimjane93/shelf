@@ -24,10 +24,8 @@ function create(req, res){
 }
 
 function getMyCollections(req, res){
-  console.log(req.params.id)
   Collection.find({creator: req.params.id})
   .then((collections) => {
-    console.log(collections)
     res.json(collections)
   })
   .catch((err) => {

@@ -1,16 +1,16 @@
-import { PromiseProvider } from "mongoose";
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-function Profile({collections}){
+function Profile({collections, user}){
     return (
         <>
           <h1>Profile</h1>
+          
           <div>
             {collections.map((collection) => (
               <>
-              <p>{collection.title}</p>
+              <h4>{collection.title}</h4>
               <p>{collection.description}</p>
               </>
             ))}
