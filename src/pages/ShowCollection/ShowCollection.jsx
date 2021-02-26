@@ -19,9 +19,13 @@ class ShowCollection extends Component {
         <p>{collection.description}</p>
         <p><strong>Resources</strong></p>
         <hr />
-        {collection.resources.map((resource) => (
+        {/* {collection.resources.map((resource) => (
           <p>{resource.title}</p>
-        ))}
+        ))} */}
+        <ResourceList 
+          collection={collection}
+          user={this.props.user}
+        />
       </>
      );
   }
