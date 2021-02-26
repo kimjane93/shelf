@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import ResourceCard from '../../components/ResourceCard/ResourceCard'
 
 
 class ShowCollection extends Component {
