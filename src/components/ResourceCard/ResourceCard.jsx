@@ -1,7 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-function ResourceCard({resource, handleDeleteResourceFromCollection}) {
+class ResourceCard extends Component {
+  state = {
+    deleteData: {
+    resource: this.props.resource,
+    collection: this.props.collection
+    }
+  }
+
+render (props) {
+  let resource = this.props.resource
+  let collection = this.props.collection
+  let handleDeleteResourceFromCollection = this.props.handleDeleteResourceFromCollection
   return (
     <>
       <div className={`card text-dark ${resource.type === 'website' ? 'bg-light': resource.type === 'audio' ? 'bg-primary' : resource.type === 'graphic' ? 'bg-secondary' : resource.type === 'book' ? 'bg-warning' : resource.type === 'article' ? 'bg-success' : resource.type === 'video' ? 'bg-danger' : 'bg-info'} mb-3`}
@@ -23,7 +34,7 @@ function ResourceCard({resource, handleDeleteResourceFromCollection}) {
           <button
             className="btn"
             type="submit"
-            onClick={()=> handleDeleteResourceFromCollection(resource._id)}
+            onClick={()=> handleDeleteResourceFromCollection(this.state.deleteData)}
           >
             Delete From Collection
           </button>
@@ -31,6 +42,7 @@ function ResourceCard({resource, handleDeleteResourceFromCollection}) {
       </div>
     </>
   );
+        }
 }
 
 export default ResourceCard;

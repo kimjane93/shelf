@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -6,7 +6,6 @@ function Profile({collections, user}){
     return (
         <>
           <h1>Profile</h1>
-          
           <div>
             {collections.map((collection) => (
               <>
@@ -26,6 +25,8 @@ function Profile({collections, user}){
         </>
     )
 }
+
+
 
 
 

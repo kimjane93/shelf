@@ -13,7 +13,6 @@ import UpdateCollection from '../UpdateCollection/UpdateCollection'
 import ShowCollection from '../ShowCollection/ShowCollection'
 import UpdateProfile from '../UpdateProfile/UpdateProfile'
 import AddResource from '../AddResource/AddResource'
-import ShowResource from '../ShowResource/ShowResource'
 import AddNewResourceToCollection from '../AddNewResourceToCollection/AddNewResourceToCollection'
 import AddCollection from '../AddCollection/AddCollection'
 import * as userService from '../../services/userService'
@@ -193,12 +192,6 @@ class App extends Component {
             collections={this.state.collections}
             handleAddNewResourceToCollection={this.handleAddNewResourceToCollection}
           /> : <Redirect to="/login" /> 
-          }
-        />
-        <Route 
-          exact path="/showresource"
-          render={()=>
-          user ? <ShowResource /> : <Redirect to="/login" /> 
           }
         />
         <Route 

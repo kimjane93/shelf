@@ -1,4 +1,5 @@
 const Collection = require('../models/collection')
+const resource = require('../models/resource')
 const Resource = require('../models/resource')
 const User = require('../models/user')
 
@@ -6,6 +7,7 @@ module.exports = {
   create,
   getMyCollections,
   addNewResource,
+  deleteResource,
 }
 
 //Create a new collection
@@ -46,6 +48,21 @@ function addNewResource(req, res){
     })
   }) 
   .catch((err) => {
+    res.json(err)
+  })
+}
+
+function deleteResource(req, res){
+  console.log('this is the delete controller function')
+  Collection.findById(req.body.collection._id)
+  .populate('resources')
+  .then((collection)=>{
+    console.log(req.body.collection._id)
+    collection.resources = collection.resources.filter(r => r._id != req.body.resource._id)
+    collection.save()
+   res.json(req.body.resource._id)
+  })
+  .catch((err)=>{
     res.json(err)
   })
 }

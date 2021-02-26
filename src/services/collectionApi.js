@@ -39,3 +39,20 @@ export function addNewResource(newResourceCollectionData){
     { mode: "cors" }
   ).then((res) => res.json());
 }
+
+
+export function deleteResource(deleteData){
+  console.log('this is the delete resoruce function')
+  return fetch(
+    `${BASE_URL}/deleteResource/${deleteData}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      },
+      body: JSON.stringify(deleteData)
+    },
+    { mode: "cors" }
+  ).then((res) => res.json());
+}

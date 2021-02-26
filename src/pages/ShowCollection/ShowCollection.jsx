@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import ResourceList from '../../components/ResourceList/ResourceList'
+import ResourceCard from '../../components/ResourceCard/ResourceCard'
+import * as collectionApi from '../../services/collectionApi'
 
 
 class ShowCollection extends Component {
-  state = {  }
+  state = { 
+    collection: this.props.location.state,
+    resources: this.props.location.state.resources
+   }
+
+   handleDeleteResourceFromCollection = async(deleteData) => {
+    console.log(deleteData)
+    const resourceId = await collectionApi.deleteResource(deleteData)
+    const resources = this.state.resources.filter(r => r._id != resourceId)
+    this.setState((state) => ({
+      resources: resources
+    }))
+  }
+
   render() { 
     if (this.props.location.state.collection){
       let collection = this.props.location.state.collection
@@ -19,13 +33,13 @@ class ShowCollection extends Component {
         <p>{collection.description}</p>
         <p><strong>Resources</strong></p>
         <hr />
-        {/* {collection.resources.map((resource) => (
-          <p>{resource.title}</p>
-        ))} */}
-        <ResourceList 
-          collection={collection}
-          user={this.props.user}
-        />
+        {this.state.resources.map((resource) => (
+           <ResourceCard 
+           collection={this.state.collection}
+           resource={resource}
+           handleDeleteResourceFromCollection={this.handleDeleteResourceFromCollection}
+         />
+        ))}
       </>
      );
   }

@@ -9,9 +9,10 @@ const ResourceList = (props) => {
         <div>
           {props.collection.resources.map((resource) => (
             <ResourceCard
-              handleDeleteResource={props.handleDeleteResource}
+              handleDeleteResourceFromCollection={props.handleDeleteResourceFromCollection}
               resource={resource}
               user={props.user}
+              collection={props.collection}
             />
           ))}
         </div>

@@ -10,6 +10,7 @@ router.use(require('../config/auth'))
 router.post('/', checkAuth, collectionsCtrl.create)
 router.get('/myCollections/:id', checkAuth, collectionsCtrl.getMyCollections)
 router.put('/addNewResource', checkAuth, collectionsCtrl.addNewResource)
+router.put('/deleteResource/:id', checkAuth, collectionsCtrl.deleteResource)
 
 function checkAuth(req, res, next) {
   if (req.user) return next();
