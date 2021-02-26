@@ -37,14 +37,15 @@ function getMyCollections(req, res){
 
 function addNewResource(req, res){
   Collection.findById(req.body.collection)
-  .then((collection) => {
-    collection.resources.push(req.body.resource)
-    collection.save()
-    // To do: populate is not working properly here
-    collection.populate("resources")
-    console.log(collection.resources)
-    res.json(collection)
-  })
+  .then((collection2) => {
+    collection2.resources.push(req.body.resource)
+    collection2.save()
+    Collection.populate(collection2, { path: "resources"})
+    .then((collection) => {
+      console.log(collection)
+      res.json(collection)
+    })
+}) 
   .catch((err) => {
     res.json(err)
   })
