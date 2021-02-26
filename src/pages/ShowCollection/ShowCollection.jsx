@@ -1,3 +1,4 @@
+import { plugin } from 'mongoose';
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import ResourceCard from '../../components/ResourceCard/ResourceCard'
@@ -10,14 +11,14 @@ class ShowCollection extends Component {
     resources: this.props.location.state.resources
    }
 
-   handleDeleteResourceFromCollection = async(deleteData) => {
-    console.log(deleteData)
-    const resourceId = await collectionApi.deleteResource(deleteData)
-    const resources = this.state.resources.filter(r => r._id != resourceId)
-    this.setState((state) => ({
-      resources: resources
-    }))
-  }
+  // static getDerivedStateFromProps(props, state){
+  //   if(props.location.state.resources != state.resources){
+  //     return {
+  //       resources: props.resources
+  //     }
+  //   }
+  //   return null
+  // }
 
   render() { 
     if (this.props.location.state.collection){
@@ -28,18 +29,28 @@ class ShowCollection extends Component {
     const collection = this.props.location.state
     return ( 
       <>
-        <h1>This is the Show Collection Page</h1>
+      <h1>This is the Show Collection Page</h1>
         <h4>{collection.title}</h4>
         <p>{collection.description}</p>
         <p><strong>Resources</strong></p>
         <hr />
-        {this.state.resources.map((resource) => (
-           <ResourceCard 
-           collection={this.state.collection}
-           resource={resource}
-           handleDeleteResourceFromCollection={this.handleDeleteResourceFromCollection}
-         />
-        ))}
+        {(this.props.currentCollection != null && this.state.collection._id === this.props.currentCollection._id) ?  
+        this.props.currentCollection.resources.map((resource) => (
+          <ResourceCard 
+          collection={collection}
+          resource={resource}
+          handleDeleteResourceFromCollection={this.props.handleDeleteResourceFromCollection}
+        />
+       ))
+        :
+        this.state.resources.map((resource) => (
+          <ResourceCard 
+          collection={collection}
+          resource={resource}
+          handleDeleteResourceFromCollection={this.props.handleDeleteResourceFromCollection}
+        />
+       ))
+        }
       </>
      );
   }

@@ -12,7 +12,6 @@ class ResourceCard extends Component {
 render (props) {
   let resource = this.props.resource
   let collection = this.props.collection
-  let handleDeleteResourceFromCollection = this.props.handleDeleteResourceFromCollection
   return (
     <>
       <div className={`card text-dark ${resource.type === 'website' ? 'bg-light': resource.type === 'audio' ? 'bg-primary' : resource.type === 'graphic' ? 'bg-secondary' : resource.type === 'book' ? 'bg-warning' : resource.type === 'article' ? 'bg-success' : resource.type === 'video' ? 'bg-danger' : 'bg-info'} mb-3`}
@@ -34,7 +33,7 @@ render (props) {
           <button
             className="btn"
             type="submit"
-            onClick={()=> handleDeleteResourceFromCollection(this.state.deleteData)}
+            onClick={()=> this.props.handleDeleteResourceFromCollection(this.state.deleteData)}
           >
             Delete From Collection
           </button>

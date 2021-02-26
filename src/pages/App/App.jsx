@@ -26,6 +26,7 @@ class App extends Component {
     user: authService.getUser(),
     collections: [],
     newResource: "",
+    currentCollection: null
   };
 
   async componentDidMount(){
@@ -79,6 +80,17 @@ class App extends Component {
         state: collection
       })
     )
+  }
+
+  handleDeleteResourceFromCollection = async(deleteData) => {
+    console.log(deleteData)
+    const collection = await collectionApi.deleteResource(deleteData)
+    const collectionIdx = this.state.collections.findIndex(c => c._id == collection._id)
+    const collections = this.state.collections.splice(collectionIdx, 1, collection)
+    this.setState((state) => ({
+      currentCollection: collection,
+      collections: collections
+    }))
   }
 
 
@@ -165,6 +177,8 @@ class App extends Component {
               history={history}
               location={location}
               user={this.state.user}
+              currentCollection={this.state.currentCollection}
+              handleDeleteResourceFromCollection={this.handleDeleteResourceFromCollection}
             /> : <Redirect to="/login" /> 
           }
         />

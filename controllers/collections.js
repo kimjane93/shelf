@@ -60,7 +60,7 @@ function deleteResource(req, res){
     console.log(req.body.collection._id)
     collection.resources = collection.resources.filter(r => r._id != req.body.resource._id)
     collection.save()
-   res.json(req.body.resource._id)
+   res.json(collection)
   })
   .catch((err)=>{
     res.json(err)
