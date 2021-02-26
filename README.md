@@ -1,3 +1,13 @@
-# react-jwt-template
+# Shelf
 
-This is a template for a full-stack MERN application with built in user authentication utilizing JWT.
+
+### **Technologies Used**
+* Node.Js
+* React
+* Javascript
+* HTML
+* CSS
+* MongoDB
+* Mongoose
+* Bootstrap
+* Socket.io

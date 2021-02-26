@@ -5,18 +5,23 @@ const NavBar = ({ user, handleLogout }) => {
     return (
     <>
       {user ?
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li className="nav-link">Welcome, {user.name}</li>
-              <li><Link to="/users" className="nav-link">Users</Link></li>
-              <li><Link to="/home" className="nav-link">Home</Link></li>
-              <li><Link to="/profile" className="nav-link">Profile</Link></li>
-              <li><Link to="/search" className="nav-link">Search</Link></li>
-              <Link to='' className='nav-link' onClick={handleLogout}>LOG OUT</Link>
-            </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/">Shelf</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav ml-auto">
+            <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
+            <a className="nav-item nav-link" href="/addresource">Add Resource</a>
+            <a className="nav-item nav-link" href="/addcollection">Add Collection</a>
+            <a className="nav-item nav-link" href="/search">Search</a>
+            <a className="nav-item nav-link" href="/chat">Chat</a>
+            <a className="nav-item nav-link" href="/profile"  aria-disabled="true">Profile</a>
+            <a className="nav-item nav-link" href=" " onClick={handleLogout}>Log Out</a>
           </div>
-        </nav>
+        </div>
+      </nav>
       :
         <nav>
           <div className="nav-wrapper">
