@@ -14,7 +14,7 @@ class AddResource extends Component {
       title: "",
       description: "",
       url: "",
-      type: "",
+      type: "website",
     },
   };
 
@@ -40,7 +40,7 @@ class AddResource extends Component {
   };
 
   render() {
-    let types = ["website", "audio", "graphic", "book", "article", "video"];
+    let types = ["website", "audio", "image", "book", "article", "video"];
     return (
       <>
         <h2>Resources</h2>

@@ -13,7 +13,7 @@ const resourceSchema = new Schema({
   title: String,
   description: String,
   url: String,
-  type: String,
+  type: {type: String, default: 'website'},
   addedByAvatar: String,
   addedByName: String,
   addedBy: {type: Schema.Types.ObjectId, ref:'User'},

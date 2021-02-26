@@ -1,0 +1,23 @@
+.website{
+    border: green 2px solid;
+}
+
+.audio {
+    border: red 2px solid;
+}
+
+.video {
+    border: blue 2px solid;
+}
+
+.book {
+    border: orange 2px solid;
+}
+
+.article {
+    border: yellow 2px solid;
+}
+
+.image {
+    border: purple 2px solid;
+}

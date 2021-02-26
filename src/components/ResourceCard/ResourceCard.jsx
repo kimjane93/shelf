@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import './ResourceCard.css'
 
 class ResourceCard extends Component {
   state = {
@@ -14,7 +15,7 @@ render (props) {
   let collection = this.props.collection
   return (
     <>
-      <div className={`card text-dark ${resource.type === 'website' ? 'bg-light': resource.type === 'audio' ? 'bg-primary' : resource.type === 'graphic' ? 'bg-secondary' : resource.type === 'book' ? 'bg-warning' : resource.type === 'article' ? 'bg-success' : resource.type === 'video' ? 'bg-danger' : 'bg-info'} mb-3`}
+      <div className={`card text-dark bg-light ${resource.type === 'website' ? 'website': resource.type === 'audio' ? 'audio' : resource.type === 'image' ? 'image' : resource.type === 'book' ? 'book' : resource.type === 'article' ? 'article' : resource.type === 'video' ? 'video' : 'video'} mb-3`}
       style={{'max-width': '18rem'}}>
         <div class="card-header"><a href={resource.url}>{resource.title}</a></div>
         <div className="card-body">
