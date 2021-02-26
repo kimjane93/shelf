@@ -42,10 +42,9 @@ function addNewResource(req, res){
     collection2.save()
     Collection.populate(collection2, { path: "resources"})
     .then((collection) => {
-      console.log(collection)
       res.json(collection)
     })
-}) 
+  }) 
   .catch((err) => {
     res.json(err)
   })
