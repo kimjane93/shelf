@@ -6,7 +6,7 @@ const resourceCtrl = require('../controllers/resources');
 
 /*---------- Protected Routes ----------*/
 router.use(require("../config/auth"))
-
+router.post('/search', checkAuth, resourceCtrl.search)
 router.post('/createresource', checkAuth, resourceCtrl.create)
 
 

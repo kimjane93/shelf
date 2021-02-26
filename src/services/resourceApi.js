@@ -16,3 +16,18 @@ export function create(resourceData){
     )
     .then((res) => res.json())
 }
+
+export function search(queryString) {
+  return fetch(
+    `${BASE_URL}search`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      },
+      body: JSON.stringify(queryString)
+    },
+    { mode: "cors" }
+  ).then((res) => res.json());
+}
