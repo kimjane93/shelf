@@ -20,6 +20,7 @@ import * as userService from '../../services/userService'
 import * as resourceApi from '../../services/resourceApi'
 import * as collectionApi from '../../services/collectionApi'
 import "./App.css";
+// import resource from "../../../models/resource";
 
 class App extends Component {
   state = {
@@ -80,6 +81,7 @@ class App extends Component {
       })
     )
   }
+
 
   render() {
     const { user } = this.state
@@ -146,7 +148,8 @@ class App extends Component {
         <Route 
           exact path="/search"
           render={()=>
-          user ? <Search /> : <Redirect to="/login" /> 
+          user ? 
+            <Search/> : <Redirect to="/login" /> 
           }
         />
         <Route 

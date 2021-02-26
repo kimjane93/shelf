@@ -2,6 +2,7 @@ const Resource = require('../models/resource')
 
 module.exports = {
     create,
+    search
 }
 
 function create(req, res){
@@ -15,4 +16,18 @@ function create(req, res){
     .catch((err)=>{
         res.json(err)
     })
+}
+
+function search(req, res){
+  Resource.find({
+    $text: {
+      $search: `${req.body.queryString}`
+    }
+  })
+  .then((resources) => {
+    res.json(resources)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 }
