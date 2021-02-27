@@ -102,11 +102,12 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => (
-            <main>
-              <h1>Welcome. This is an authorization template.</h1>
-            </main>
-          )}
+          render={()=>
+            user ? 
+            <HomePage 
+              user={this.state.user}
+            /> : <Redirect to="/login" /> 
+            }
         />
         <Route
           exact
@@ -140,12 +141,6 @@ class App extends Component {
           render={()=>
           user ? <Chat /> : <Redirect to="/login" /> 
         }
-        />
-        <Route 
-          exact path="/home"
-          render={()=>
-          user ? <HomePage /> : <Redirect to="/login" /> 
-          }
         />
         <Route 
           exact path="/profile"

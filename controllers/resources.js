@@ -4,6 +4,7 @@ module.exports = {
     create,
     search,
     addComment,
+    getRandom,
 }
 
 function create(req, res){
@@ -39,6 +40,16 @@ function addComment(req, res){
     resource.comments.push(req.body.formData)
     resource.save()
     res.json(resource)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function getRandom(req, res){
+  Resource.aggregate([{ $sample: { size : 4 } }])
+  .then((resources) => {
+    res.json(resources)
   })
   .catch((err) => {
     res.json(err)
