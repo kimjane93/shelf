@@ -50,6 +50,7 @@ class ResourceCard extends Component {
         >
           <div className="card-header">
             <a href={resource.url}>{resource.title}</a>
+            <p style={{"float" : "right"}}>{resource.likes}</p>
           </div>
           <div className="card-body">
             <h5 className="card-title">Type: {resource.type}</h5>
