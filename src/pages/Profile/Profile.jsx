@@ -15,7 +15,6 @@ function Profile({collections, user}){
                 to={{
                   pathname: "/showcollection",
                   state: collection
-                  // Need to Pass User here, potentially adjust access points of collection on ShowCollection
                 }}
               >
                 Details
