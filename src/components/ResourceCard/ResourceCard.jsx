@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import resourceApi from '../../services/resourceApi'
+import * as resourceApi from '../../services/resourceApi'
 import './ResourceCard.css'
 
 class ResourceCard extends Component {
