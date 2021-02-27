@@ -65,7 +65,7 @@ class ResourceCard extends Component {
                 aria-expanded="false"
                 aria-controls="multiCollapseExample2"
               >
-                Notes
+                Comments
               </button>
               <div className="row">
                 <div className="col">
