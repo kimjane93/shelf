@@ -153,6 +153,7 @@ class App extends Component {
           user ? 
             <Profile 
               collections={this.state.collections}
+              user={this.state.user}
             /> : <Redirect to="/login" /> 
           }
         />

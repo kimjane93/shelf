@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import authService from "../../services/authService";
 import './ResourceCard.css'
 
 class ResourceCard extends Component {
@@ -13,6 +14,7 @@ class ResourceCard extends Component {
 render (props) {
   let resource = this.props.resource
   let collection = this.props.collection
+  console.log(this.props.user)
   return (
     <>
       <div className={`card text-dark bg-light ${resource.type === 'website' ? 'website': resource.type === 'audio' ? 'audio' : resource.type === 'image' ? 'image' : resource.type === 'book' ? 'book' : resource.type === 'article' ? 'article' : resource.type === 'video' ? 'video' : 'video'} mb-3`}
