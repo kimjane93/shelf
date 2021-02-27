@@ -73,9 +73,9 @@ class ResourceCard extends Component {
                     className="collapse multi-collapse"
                     id="multiCollapseExample2"
                   >
-                    <div className="card card-body">
+                    <div className="card card-body overflow-auto">
                       {this.state.comments.length === 0 ? <p>No Comments Added</p> : this.state.comments.length.map((comment) => (
-                        <p>Comment</p>
+                        <p>Comment Blurb</p>
                       ))}
                     </div>
                   </div>
