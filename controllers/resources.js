@@ -2,7 +2,8 @@ const Resource = require('../models/resource')
 
 module.exports = {
     create,
-    search
+    search,
+    addComment,
 }
 
 function create(req, res){
@@ -26,6 +27,18 @@ function search(req, res){
   })
   .then((resources) => {
     res.json(resources)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function addComment(req, res){
+  Resource.findById(req.body.formData.resource._id)
+  .then((resource)=>{
+    resource.comments.push(req.body.formData)
+    resource.save()
+    res.json(resource)
   })
   .catch((err) => {
     res.json(err)

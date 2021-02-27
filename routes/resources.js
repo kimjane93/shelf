@@ -8,6 +8,7 @@ const resourceCtrl = require('../controllers/resources');
 router.use(require("../config/auth"))
 router.post('/search', checkAuth, resourceCtrl.search)
 router.post('/createresource', checkAuth, resourceCtrl.create)
+router.post('/addcomment', checkAuth, resourceCtrl.addComment)
 
 
 function checkAuth(req, res, next) {
