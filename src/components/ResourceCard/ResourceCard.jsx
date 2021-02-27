@@ -28,7 +28,7 @@ render (props) {
   return (
     <>
       <div className={`card text-dark bg-light ${resource.type === 'website' ? 'website': resource.type === 'audio' ? 'audio' : resource.type === 'image' ? 'image' : resource.type === 'book' ? 'book' : resource.type === 'article' ? 'article' : resource.type === 'video' ? 'video' : 'video'} mb-3`}
-      style={{'width': '50rem'}}>
+      style={{'max-width': '100%', 'width': '75%'}}>
         <div class="card-header"><a href={resource.url}>{resource.title}</a></div>
         <div className="card-body">
           <h5 className="card-title">Type: {resource.type}</h5>
