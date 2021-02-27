@@ -1,20 +1,30 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import authService from "../../services/authService";
+import resourceApi from '../../services/resourceApi'
 import './ResourceCard.css'
 
 class ResourceCard extends Component {
   state = {
+    resource: this.props.resource,
+    comments: this.props.resource.comments,
     deleteData: {
     resource: this.props.resource,
     collection: this.props.collection
     }
   }
 
+  handleAddComment = async(formData) => {
+    const resource = await resourceApi.addComment(formData)
+    this.setState((state) => ({
+      resource: resource,
+      comments: [...this.state.resource.comments, resource.comments[resource.comments.length-1]]
+    }))
+  }
+
 render (props) {
   let resource = this.props.resource
   let collection = this.props.collection
-  console.log(this.props.user)
+
   return (
     <>
       <div className={`card text-dark bg-light ${resource.type === 'website' ? 'website': resource.type === 'audio' ? 'audio' : resource.type === 'image' ? 'image' : resource.type === 'book' ? 'book' : resource.type === 'article' ? 'article' : resource.type === 'video' ? 'video' : 'video'} mb-3`}
