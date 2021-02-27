@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as resourceApi from "../../services/resourceApi";
+import AddComment from '../AddComment/AddComment'
 import "./ResourceCard.css";
 
 class ResourceCard extends Component {
@@ -83,6 +84,10 @@ class ResourceCard extends Component {
                 </div>
               </div>
             </div>
+            <AddComment 
+              resource={this.state.resource}
+              user={this.props.user}
+            />
             <button
               className="btn"
               type="submit"

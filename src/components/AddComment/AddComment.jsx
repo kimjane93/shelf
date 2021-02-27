@@ -5,7 +5,8 @@ class AddComment extends Component {
     state = {
         invalidForm: true,
         formData: {
-            resource: this.props.resource._id,user: this.props.user._id,
+            resource: this.props.resource._id,
+            user: this.props.user._id,
             userName: this.props.user.name,
             // userAvatar: this.props.user.avatar
             content: ''
@@ -24,7 +25,9 @@ class AddComment extends Component {
         const formData = {
             ...this.state.formData, [e.target.name]: e.target.value
         }
-        this.setState({ formData: formData, invalidForm: !this.formRef.current.checkValidity()
+        this.setState({ 
+            formData: formData, 
+            invalidForm: !this.formRef.current.checkValidity()
         })
     }
 
@@ -43,3 +46,4 @@ class AddComment extends Component {
     }
 }
 
+export default AddComment

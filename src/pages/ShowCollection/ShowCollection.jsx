@@ -8,8 +8,8 @@ import './ShowCollection.css'
 
 class ShowCollection extends Component {
   state = { 
-    collection: this.props.location.state,
-    resources: this.props.location.state.resources
+    collection: this.props.location.state.collection,
+    resources: this.props.location.state.collection.resources
    }
 
   // static getDerivedStateFromProps(props, state){
@@ -27,7 +27,7 @@ class ShowCollection extends Component {
     } else {
       let collection = this.props.history.location.state
     }
-    const collection = this.props.location.state
+    const collection = this.props.location.state.collection
     return ( 
       <>
       <h1>This is the Show Collection Page</h1>
@@ -46,7 +46,8 @@ class ShowCollection extends Component {
        ))
         :
         this.state.resources.map((resource) => (
-          <ResourceCard 
+          <ResourceCard
+          user={this.props.location.state.user} 
           collection={collection}
           resource={resource}
           handleDeleteResourceFromCollection={this.props.handleDeleteResourceFromCollection}
