@@ -49,7 +49,7 @@ class ResourceCard extends Component {
           style={{ "max-width": "100%", "width": "75%" }}
         >
           <div className="card-header">
-            <a href={resource.url}>{resource.title}</a>
+            <a href={resource.url} target="_blank" >{resource.title}</a>
             <p style={{"float" : "right"}}>{resource.likes}</p>
           </div>
           <div className="card-body">
