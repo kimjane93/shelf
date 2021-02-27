@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import ResourceCard from '../../components/ResourceCard/ResourceCard'
 import * as collectionApi from '../../services/collectionApi'
+import './ShowCollection.css'
 
 
 class ShowCollection extends Component {
@@ -34,6 +35,7 @@ class ShowCollection extends Component {
         <p>{collection.description}</p>
         <p><strong>Resources</strong></p>
         <hr />
+        <div className="resource-list">
         {(this.props.currentCollection != null && this.state.collection._id === this.props.currentCollection._id) ?  
         this.props.currentCollection.resources.map((resource) => (
           <ResourceCard 
@@ -51,6 +53,7 @@ class ShowCollection extends Component {
         />
        ))
         }
+        </div>
       </>
      );
   }
