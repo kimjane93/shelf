@@ -22,11 +22,11 @@ class ShowCollection extends Component {
   // }
 
   render() { 
-    if (this.props.location.state.collection){
-      let collection = this.props.location.state.collection
-    } else {
-      let collection = this.props.history.location.state
-    }
+    // if (this.props.location.state.collection){
+    //   let collection = this.props.location.state.collection
+    // } else {
+    //   let collection = this.props.history.location.state
+    // }
     const collection = this.props.location.state.collection
     return ( 
       <>
