@@ -36,7 +36,7 @@ export function addComment(formData){
   return fetch(
     `${BASE_URL}addcomment`,
     {
-      method: "POST",
+      method: "PUT",
       headers: {
         "content-type": "application/json",
         Authorization: "Bearer " + tokenService.getToken(),

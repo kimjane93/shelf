@@ -13,12 +13,13 @@ class AddComment extends Component {
         }
     }
 
-    formRef = React.formRef()
+    formRef = React.createRef()
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.handleAddComment(this.state.formData)
-        this.setState({ formData: {content: ''} })
+        console.log('I made it here!')
+        this.props.handleAddComment(this.state.formData);
+        this.setState({ formData: {content: ''}})
     }
 
     handleChange = (e) => {
@@ -38,8 +39,8 @@ class AddComment extends Component {
             <div>
                 <form ref={this.formRef} onSubmit={this.handleSubmit}>
                     <input type="text" name="content" value={this.state.formData.content} onChange={this.handleChange} />
-                </form>
                 <button type="submit" >Add Comment</button>
+                </form>
             </div>
             </>
         )

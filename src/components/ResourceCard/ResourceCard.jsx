@@ -26,8 +26,8 @@ class ResourceCard extends Component {
   };
 
   render(props) {
-    let resource = this.props.resource;
-    let collection = this.props.collection;
+    let resource = this.state.resource;
+    let collection = this.state.collection;
 
     return (
       <>
@@ -76,8 +76,8 @@ class ResourceCard extends Component {
                     id="multiCollapseExample2"
                   >
                     <div className="card card-body overflow-auto">
-                      {this.state.comments.length === 0 ? <p>No Comments Added</p> : this.state.comments.length.map((comment) => (
-                        <p>Comment Blurb</p>
+                      {this.state.comments.length === 0 ? <p>No Comments Added</p> : this.state.comments.map((comment) => (
+                        <p>{comment.content}</p>
                       ))}
                     </div>
                   </div>
@@ -87,6 +87,7 @@ class ResourceCard extends Component {
             <AddComment 
               resource={this.state.resource}
               user={this.props.user}
+              handleAddComment = {this.handleAddComment}
             />
             <button
               className="btn"

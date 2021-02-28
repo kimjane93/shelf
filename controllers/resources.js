@@ -35,10 +35,15 @@ function search(req, res){
 }
 
 function addComment(req, res){
-  Resource.findById(req.body.formData.resource._id)
+  console.log(req.body)
+  Resource.findById(req.body.resource)
   .then((resource)=>{
-    resource.comments.push(req.body.formData)
+    console.log(resource)
+    console.log(req.body)
+    resource.comments.push(req.body)
+    console.log(resource.comments)
     resource.save()
+    console.log(resource)
     res.json(resource)
   })
   .catch((err) => {
