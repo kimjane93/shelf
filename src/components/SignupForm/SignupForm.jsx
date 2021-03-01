@@ -6,6 +6,8 @@ class SignupForm extends Component {
   state = {
     name: "",
     email: "",
+    avatar: "",
+    bio: "",
     password: "",
     passwordConf: "",
   };
@@ -35,7 +37,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const { name, email, password, passwordConf } = this.state;
+    const { name, email, password, passwordConf, avatar, bio } = this.state;
     return (
       <div>
         <h3>Sign Up</h3>
@@ -58,6 +60,24 @@ class SignupForm extends Component {
             onChange={this.handleChange}
           />
           <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="avatar"
+            value={avatar}
+            name="avatar"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="avatar">Avatar</label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="bio"
+            value={bio}
+            name="bio"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="bio">Bio</label>
           <input
             type="password"
             autoComplete="off"
