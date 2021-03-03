@@ -30,7 +30,7 @@ class ResourceCard extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.handleAddNewResourceToCollection(this.state.formData)
+    this.props.handleAddResourceToCollection(this.state.formData)
   }
 
   render(props) {

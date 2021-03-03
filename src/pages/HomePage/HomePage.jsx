@@ -27,7 +27,7 @@ class HomePage extends Component{
                     resource={result}
                     user={this.state.user}
                     collections={this.props.collections}
-                    handleAddNewResourceToCollection={this.props.handleAddNewResourceToCollection}
+                    handleAddResourceToCollection={this.props.handleAddResourceToCollection}
                  />
              ))}
             </div>

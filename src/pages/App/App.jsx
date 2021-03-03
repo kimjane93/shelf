@@ -74,8 +74,6 @@ class App extends Component {
   }
 
   handleAddNewResourceToCollection = async(newResourceCollectionData) => {
-    console.log('this is the add resource to collection page')
-    console.log(newResourceCollectionData)
     const collection = await collectionApi.addNewResource(newResourceCollectionData)
     this.setState(
       (state) => ({
@@ -84,6 +82,18 @@ class App extends Component {
       () => this.props.history.push({
         pathname: '/showcollection',
         state: collection
+      })
+    )
+  }
+
+  handleAddResourceToCollection = async(newResourceCollectionData) => {
+    console.log('this is the add resource to collection function from home page')
+    console.log(newResourceCollectionData)
+    const collection = await collectionApi.addNewResource(newResourceCollectionData)
+    const collections = this.state.collections.filter(c => c._id !== collection._id)
+    this.setState(
+      (state) => ({
+        collections: [...collections, collection]
       })
     )
   }
@@ -130,7 +140,7 @@ class App extends Component {
               history={history}
               user={this.state.user}
               collections={this.state.collections}
-              handleAddNewResourceToCollection={this.handleAddNewResourceToCollection}
+              handleAddResourceToCollection={this.handleAddResourceToCollection}
             /> : <Redirect to="/login" /> 
             }
         />
