@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as resourceApi from '../../services/resourceApi'
+import SearchedResourceCard from '../../components/SearchedResourceCard/SearchedResourceCard'
 
 
 class HomePage extends Component{
@@ -19,11 +20,14 @@ class HomePage extends Component{
     render (){
         return(
             <>
-            <ul>
+            <div className="random-resources">
              {this.state.results.map((result)=> (
-                 <li>{result.title}</li>
+                 <SearchedResourceCard 
+                    resource={result}
+                    user={this.state.user}
+                 />
              ))}
-            </ul>
+            </div>
             </>
         )
     }
