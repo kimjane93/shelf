@@ -8,6 +8,7 @@ const usersCtrl = require('../controllers/users');
 /*---------- Protected Routes ----------*/
 router.use(require("../config/auth"));
 router.get("/", checkAuth, usersCtrl.index);
+router.get("/myfriends/:id", checkAuth, usersCtrl.getMyFriends)
 router.put("/addfriend", checkAuth, usersCtrl.addFriend)
 router.put("/deletefriend", checkAuth, usersCtrl.deleteFriend)
 

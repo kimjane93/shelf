@@ -34,8 +34,13 @@ class App extends Component {
   async componentDidMount(){
     if(this.state.user){
       const collections = await collectionApi.getMyCollections(this.state.user)
-      console.log(`These are the returned collections! ${collections}`)
-      this.setState({collections: collections})
+      // console.log(`These are the returned collections! ${collections}`)
+      const friends = await userService.getMyFriends(this.state.user)
+      console.log(friends)
+      this.setState((state) => ({
+        collections: collections,
+        friends: friends
+      }))
     }
   }
 
@@ -108,9 +113,9 @@ class App extends Component {
 
   handleDeleteFriend = async(formData) => {
     const currentUser = await userService.deleteFriend(formData)
-    console.log(`This is a miracle: ${currentUser}`)
-    console.log(currentUser)
-    console.log(currentUser.friends)
+    // console.log(`This is a miracle: ${currentUser}`)
+    // console.log(currentUser)
+    // console.log(currentUser.friends)
     this.setState((state) => ({
       user: currentUser, 
       friends: [...currentUser.friends]}

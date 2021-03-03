@@ -11,6 +11,16 @@ export function getAllUsers() {
   ).then((res) => res.json());
 }
 
+export function getMyFriends(user){
+  return fetch(
+    `${BASE_URL}/myfriends/${user._id}`,
+    {
+      headers: { Authorization: "Bearer " + tokenService.getToken() },
+    },
+    { mode: "cors" }
+  ).then((res) => res.json());
+}
+
 
 export function addFriend(formData){
   return fetch(

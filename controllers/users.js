@@ -4,11 +4,19 @@ module.exports = {
   index,
   addFriend,
   deleteFriend,
+  getMyFriends,
 };
 
 function index(req, res) {
   console.log("req.user", req.user);
   User.find({}).then((users) => res.json(users));
+}
+
+function getMyFriends(req, res){
+  User.findById(req.params.id)
+  .then((user) => {
+    res.json(user.friends)
+  })
 }
 
 function addFriend(req, res){
