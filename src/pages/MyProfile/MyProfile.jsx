@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import CollectionCard from '../../components/CollectionCard/CollectionCard'
-import './Profile.css'
+import './MyProfile.css'
 
-function Profile({collections, user}){
+function MyProfile({collections, user}){
     return (
         <>
           <h1>Profile</h1>
@@ -27,4 +27,4 @@ function Profile({collections, user}){
 
 
 
-export default Profile;
+export default MyProfile;

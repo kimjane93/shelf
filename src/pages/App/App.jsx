@@ -7,7 +7,8 @@ import authService from "../../services/authService";
 import Users from '../Users/Users'
 import Chat from '../Chat/Chat'
 import HomePage from '../HomePage/HomePage'
-import Profile from '../Profile/Profile'
+import MyProfile from '../MyProfile/MyProfile'
+import OtherProfile from '../OtherProfile/OtherProfile'
 import Search from '../Search/Search'
 import UpdateCollection from '../UpdateCollection/UpdateCollection'
 import ShowCollection from '../ShowCollection/ShowCollection'
@@ -146,9 +147,18 @@ class App extends Component {
           exact path="/myprofile"
           render={()=>
           user ? 
-            <Profile 
+            <MyProfile 
               collections={this.state.collections}
               user={this.state.user}
+            /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/profile"
+          render={()=>
+          user ? 
+            <OtherProfile 
+              currentUser={this.state.user}
             /> : <Redirect to="/login" /> 
           }
         />
