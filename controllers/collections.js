@@ -6,6 +6,7 @@ const User = require('../models/user')
 module.exports = {
   create,
   getMyCollections,
+  getOtherCollections,
   addNewResource,
   deleteResource,
 }
@@ -53,7 +54,7 @@ function addNewResource(req, res){
 }
 
 function deleteResource(req, res){
-  console.log('this is the delete controller function')
+  // console.log('this is the delete controller function')
   Collection.findById(req.body.collection._id)
   .populate('resources')
   .then((collection)=>{
@@ -63,6 +64,17 @@ function deleteResource(req, res){
    res.json(collection)
   })
   .catch((err)=>{
+    res.json(err)
+  })
+}
+
+function getOtherCollections(req, res){
+  Collection.find({creator: req.params.id})
+  .populate("resources")
+  .then((collections) => {
+    res.json(collections)
+  })
+  .catch((err) => {
     res.json(err)
   })
 }

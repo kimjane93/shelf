@@ -9,6 +9,7 @@ const collectionsCtrl = require('../controllers/collections')
 router.use(require('../config/auth'))
 router.post('/', checkAuth, collectionsCtrl.create)
 router.get('/myCollections/:id', checkAuth, collectionsCtrl.getMyCollections)
+router.get('/otherCollections/:id', checkAuth, collectionsCtrl.getOtherCollections)
 router.put('/addNewResource', checkAuth, collectionsCtrl.addNewResource)
 router.put('/deleteResource/:id', checkAuth, collectionsCtrl.deleteResource)
 

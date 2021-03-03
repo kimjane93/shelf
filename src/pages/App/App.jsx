@@ -7,7 +7,8 @@ import authService from "../../services/authService";
 import Users from '../Users/Users'
 import Chat from '../Chat/Chat'
 import HomePage from '../HomePage/HomePage'
-import Profile from '../Profile/Profile'
+import MyProfile from '../MyProfile/MyProfile'
+import OtherProfile from '../OtherProfile/OtherProfile'
 import Search from '../Search/Search'
 import UpdateCollection from '../UpdateCollection/UpdateCollection'
 import ShowCollection from '../ShowCollection/ShowCollection'
@@ -26,14 +27,18 @@ class App extends Component {
     user: authService.getUser(),
     collections: [],
     newResource: "",
-    currentCollection: null
+    currentCollection: null,
+    friends: []
   };
 
   async componentDidMount(){
     if(this.state.user){
       const collections = await collectionApi.getMyCollections(this.state.user)
-      console.log(`These are the returned collections! ${collections}`)
-      this.setState({collections: collections})
+      const friends = await userService.getMyFriends(this.state.user)
+      this.setState((state) => ({
+        collections: collections,
+        friends: friends
+      }))
     }
   }
 
@@ -64,7 +69,7 @@ class App extends Component {
     this.setState(
       (state) => ({
         collections: [...state.collections, newCollection]
-      }), () =>  this.props.history.push('/profile')
+      }), () =>  this.props.history.push('/myprofile')
     )
   }
 
@@ -83,7 +88,6 @@ class App extends Component {
   }
 
   handleDeleteResourceFromCollection = async(deleteData) => {
-    console.log(deleteData)
     const collection = await collectionApi.deleteResource(deleteData)
     const collectionIdx = this.state.collections.findIndex(c => c._id == collection._id)
     const collections = this.state.collections.splice(collectionIdx, 1, collection)
@@ -91,6 +95,22 @@ class App extends Component {
       currentCollection: collection,
       collections: collections
     }))
+  }
+
+  handleAddFriend = async(formData) => {
+    const currentUser = await userService.addFriend(formData)
+    this.setState((state) => ({
+      user: currentUser, 
+      friends: [...currentUser.friends]}
+    ))
+  }
+
+  handleDeleteFriend = async(formData) => {
+    const currentUser = await userService.deleteFriend(formData)
+    this.setState((state) => ({
+      user: currentUser, 
+      friends: [...currentUser.friends]}
+    ))
   }
 
 
@@ -133,7 +153,10 @@ class App extends Component {
           exact
           path="/users"
           render={() =>
-            user ? <Users /> : <Redirect to="/login" />
+            user ? 
+            <Users 
+              currentUser={this.state.user}
+            /> : <Redirect to="/login" />
           }
         />
         <Route 
@@ -143,12 +166,25 @@ class App extends Component {
         }
         />
         <Route 
-          exact path="/profile"
+          exact path="/myprofile"
           render={()=>
           user ? 
-            <Profile 
+            <MyProfile 
               collections={this.state.collections}
               user={this.state.user}
+            /> : <Redirect to="/login" /> 
+          }
+        />
+        <Route 
+          exact path="/profile"
+          render={({location})=>
+          user ? 
+            <OtherProfile 
+              location={location}
+              currentUser={this.state.user}
+              friends={this.state.friends}
+              handleAddFriend={this.handleAddFriend}
+              handleDeleteFriend={this.handleDeleteFriend}
             /> : <Redirect to="/login" /> 
           }
         />

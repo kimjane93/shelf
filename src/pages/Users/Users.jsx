@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import { getAllUsers } from "../../services/userService";
 
 class Users extends Component {
@@ -12,11 +13,38 @@ class Users extends Component {
   }
 
   render() {
+    let currentUser = this.props.currentUser
     return (
       <>
         <h1>Hello. This is a list of all the users.</h1>
         {this.state.users.map((user) => (
-          <p>{user.name} </p>
+          <div>
+            {user._id === currentUser._id ? 
+              <div>
+                <p>{user.name} </p>
+                <Link
+                  to={{
+                    pathname: "/myprofile",
+                    state: { user }
+                  }}
+                >
+                  {user.name}
+                </Link>
+              </div>
+            :
+              <div>
+                <p>{user.name} </p>
+                <Link
+                  to={{
+                    pathname: "/profile",
+                    state: { user }
+                  }}
+                >
+                  {user.name}
+                </Link>
+              </div>
+            }
+          </div>
         ))}
       </>
     );
