@@ -40,7 +40,7 @@ class OtherProfile extends Component {
         <h1>This is another Profile Page!</h1>
         <p>{user.name}</p>
         <p>{user.description}</p>
-        {this.props.currentUser.friends.includes(user._id) ? 
+        {this.props.friends.includes(user._id) ? 
           <div>
             <p>Friends already</p> 
             <button onClick={this.handleDeleteSubmit}>Delete Friend</button>
