@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as collectionApi from '../../services/collectionApi'
+import CollectionCard from '../../components/CollectionCard/CollectionCard'
 
 class OtherProfile extends Component {
   state = { 
@@ -20,6 +21,13 @@ class OtherProfile extends Component {
         <h1>This is another Profile Page!</h1>
         <p>{user.name}</p>
         <p>{user.description}</p>
+        {this.state.collections.map((collection) => (
+          <>
+            <CollectionCard
+              collection={collection}
+            />
+          </>
+        ))}
       </>
      );
   }
