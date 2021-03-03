@@ -74,6 +74,7 @@ class App extends Component {
   }
 
   handleAddNewResourceToCollection = async(newResourceCollectionData) => {
+    console.log('this is the add resource to collection page')
     console.log(newResourceCollectionData)
     const collection = await collectionApi.addNewResource(newResourceCollectionData)
     this.setState(
@@ -122,10 +123,14 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={()=>
+          render={({history, location})=>
             user ? 
             <HomePage 
+              location={location}
+              history={history}
               user={this.state.user}
+              collections={this.state.collections}
+              handleAddNewResourceToCollection={this.handleAddNewResourceToCollection}
             /> : <Redirect to="/login" /> 
             }
         />

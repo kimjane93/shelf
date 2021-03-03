@@ -46,6 +46,8 @@ function addNewResource(req, res){
     Collection.populate(collection2, { path: "resources"})
     .then((collection) => {
       res.json(collection)
+      console.log('this is the returned collection')
+      console.log(collection)
     })
   }) 
   .catch((err) => {

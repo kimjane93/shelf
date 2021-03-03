@@ -26,6 +26,8 @@ class HomePage extends Component{
                  <SearchedResourceCard 
                     resource={result}
                     user={this.state.user}
+                    collections={this.props.collections}
+                    handleAddNewResourceToCollection={this.props.handleAddNewResourceToCollection}
                  />
              ))}
             </div>

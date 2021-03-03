@@ -8,15 +8,33 @@ class ResourceCard extends Component {
   state = {
     resource: this.props.resource,
     comments: this.props.resource.comments,
+    invalidForm: false,
     formData: {
-      resource: this.props.resource,
-      collection: this.props.collection,
+      resource: this.props.resource._id,
+      collection: "",
     },
   };
 
+  formRef = React.createRef()
+
+
+  handleChange = (e) => {
+    const formData = {
+      ...this.state.formData, [e.target.name]: e.target.value
+    }
+    this.setState({
+      formData,
+      invalidForm: !this.formRef.current.checkValidity()
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.handleAddNewResourceToCollection(this.state.formData)
+  }
+
   render(props) {
     let resource = this.state.resource;
-    let collection = this.state.collection;
 
     return (
       <>
@@ -74,6 +92,15 @@ class ResourceCard extends Component {
               </div>
             </div>
           </div>
+          <form ref={this.formRef} onSubmit={this.handleSubmit}>
+            {this.props.collections.map((collection)=> (
+              <div>
+                <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
+                <label htmlFor="#collection">{collection.title}</label>
+              </div>
+            ))}
+            <button type="submit" className="btn btn-success">Add To Collection</button>
+          </form>
         </div>
       </>
     );
