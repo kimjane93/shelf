@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import CollectionCard from '../../components/CollectionCard/CollectionCard'
+import './Profile.css'
 
 function Profile({collections, user}){
     return (
@@ -10,24 +11,12 @@ function Profile({collections, user}){
             <p>{user.name}</p>
             <p>{user.bio}</p>
           </div>
-          <div>
+          <div className="collectionList">
             {collections.map((collection) => (
-              <>
-              {/* <h4>{collection.title}</h4>
-              <p>{collection.description}</p>
-              <Link
-                to={{
-                  pathname: "/showcollection",
-                  state: {collection, user}
-                }}
-              >
-                Details
-              </Link> */}
-              <CollectionCard
-                collection={collection}
-                user={user} 
-              />
-              </>
+                <CollectionCard
+                  collection={collection}
+                  user={user} 
+                  />
             ))}
           </div>
         </>

@@ -12,7 +12,7 @@ class CollectionCard extends Component {
         <div className="card collectionCard">
           <div className="card-body">
             <h5 className="card-title">{collection.title}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <h6 className="card-subtitle mb-2 text-muted">Created by {collection.createdByName}</h6>
             <p className="card-text">{collection.description}</p>
             <Link
                 to={{
