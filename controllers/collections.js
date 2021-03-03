@@ -6,6 +6,7 @@ const User = require('../models/user')
 module.exports = {
   create,
   getMyCollections,
+  getOtherCollections,
   addNewResource,
   deleteResource,
 }
@@ -63,6 +64,17 @@ function deleteResource(req, res){
    res.json(collection)
   })
   .catch((err)=>{
+    res.json(err)
+  })
+}
+
+function getOtherCollections(req, res){
+  Collection.find({creator: req.params.id})
+  .populate("resources")
+  .then((collections) => {
+    res.json(collections)
+  })
+  .catch((err) => {
     res.json(err)
   })
 }

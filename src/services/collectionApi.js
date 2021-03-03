@@ -56,3 +56,12 @@ export function deleteResource(deleteData){
     { mode: "cors" }
   ).then((res) => res.json());
 }
+
+export function getOtherCollections(user){
+  return fetch(`${BASE_URL}/otherCollections/${user._id}`, 
+  {
+    headers: { Authorization: "Bearer " + tokenService.getToken() },
+  },
+  { mode: "cors" }
+  ).then((res) => res.json());
+}

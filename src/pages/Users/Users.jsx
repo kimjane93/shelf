@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import { getAllUsers } from "../../services/userService";
 
 class Users extends Component {
@@ -16,7 +17,17 @@ class Users extends Component {
       <>
         <h1>Hello. This is a list of all the users.</h1>
         {this.state.users.map((user) => (
-          <p>{user.name} </p>
+          <div>
+            <p>{user.name} </p>
+            <Link
+              to={{
+                pathname: "/profile",
+                state: { user }
+              }}
+            >
+              {user.name}
+            </Link>
+          </div>
         ))}
       </>
     );
