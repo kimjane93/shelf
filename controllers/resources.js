@@ -47,7 +47,7 @@ function addComment(req, res){
 }
 
 function getRandom(req, res){
-  Resource.aggregate([{ $sample: { size : 4 } }])
+  Resource.aggregate([{ $sample: { size : 6 } }])
   .then((resources) => {
     res.json(resources)
     console.log(resources)

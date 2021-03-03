@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as resourceApi from '../../services/resourceApi'
 import SearchedResourceCard from '../../components/SearchedResourceCard/SearchedResourceCard'
+import './HomePage.css'
 
 
 class HomePage extends Component{

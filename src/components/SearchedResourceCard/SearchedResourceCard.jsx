@@ -35,8 +35,8 @@ class ResourceCard extends Component {
               : resource.type === "video"
               ? "video"
               : "video"
-          } mb-3`}
-          style={{ "max-width": "100%", "width": "75%" }}
+          } search-card`}
+          style={{ "width": "25%", "minWidth": "200px"}}
         >
           <div className="card-header">
             <a href={resource.url} target="_blank" >{resource.title}</a>
