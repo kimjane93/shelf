@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as collectionApi from '../../services/collectionApi'
-import * as userApi from '../../services/userService'
+// import * as userApi from '../../services/userService'
 import CollectionCard from '../../components/CollectionCard/CollectionCard'
 import '../MyProfile/MyProfile.css'
 
@@ -20,14 +20,16 @@ class OtherProfile extends Component {
     this.setState({ collections });
   }
 
-  
-
-  handleSubmit = (e) => {
-    console.log('I have made it to handle submit')
+  handleAddSubmit = (e) => {
     this.props.handleAddFriend(this.state.formData)
-    this.setState((state) => ({
+    // this.setState((state) => ({
 
-    }))
+    // }))
+  }
+
+  handleDeleteSubmit = (e) => {
+    console.log('Made it to handleDeleteSubmit')
+    this.props.handleDeleteFriend(this.state.formData)
   }
 
   render() {
@@ -38,12 +40,16 @@ class OtherProfile extends Component {
         <h1>This is another Profile Page!</h1>
         <p>{user.name}</p>
         <p>{user.description}</p>
-        {this.props.currentUser.friends.includes(user._id) ? <p>Friends already</p> 
+        {this.props.currentUser.friends.includes(user._id) ? 
+          <div>
+            <p>Friends already</p> 
+            <button onClick={this.handleDeleteSubmit}>Delete Friend</button>
+          </div>
         : 
-          <>
+          <div>
             <p>Not friends yet</p>
-            <button onClick={this.handleSubmit}>Add Friend</button>
-          </>
+            <button onClick={this.handleAddSubmit}>Add Friend</button>
+          </div>
         }
         <div className="collectionList">
           {this.state.collections.map((collection) => (

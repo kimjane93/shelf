@@ -3,6 +3,7 @@ const User = require("../models/user");
 module.exports = {
   index,
   addFriend,
+  deleteFriend,
 };
 
 function index(req, res) {
@@ -11,12 +12,26 @@ function index(req, res) {
 }
 
 function addFriend(req, res){
-  console.log('hi')
-  console.log(req.body)
   User.findById(req.body.currentUser._id)
   .then((user) => {
     user.friends.push(req.body.user._id)
     user.save()
+    res.json(user)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function deleteFriend(req, res){
+  User.findById(req.body.currentUser._id)
+  .then((user) => {
+    // console.log(user)
+    console.log(user.friends)
+    console.log(req.body.user._id)
+    user.friends = user.friends.filter(f => f._id != req.body.user._id)
+    user.save()
+    console.log(`Deleted friend: ${user}`)
     res.json(user)
   })
   .catch((err) => {

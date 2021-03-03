@@ -9,6 +9,7 @@ const usersCtrl = require('../controllers/users');
 router.use(require("../config/auth"));
 router.get("/", checkAuth, usersCtrl.index);
 router.put("/addfriend", checkAuth, usersCtrl.addFriend)
+router.put("/deletefriend", checkAuth, usersCtrl.deleteFriend)
 
 /*---------- Auth Checker ----------*/
 function checkAuth(req, res, next) {

@@ -97,6 +97,17 @@ class App extends Component {
 
   handleAddFriend = async(formData) => {
     const currentUser = await userService.addFriend(formData)
+    // console.log(`This is a miracle: ${currentUser}`)
+    // console.log(currentUser)
+    // console.log(currentUser.friends)
+    this.setState((state) => ({
+      user: currentUser, 
+      friends: [...currentUser.friends]}
+    ))
+  }
+
+  handleDeleteFriend = async(formData) => {
+    const currentUser = await userService.deleteFriend(formData)
     console.log(`This is a miracle: ${currentUser}`)
     console.log(currentUser)
     console.log(currentUser.friends)
@@ -177,6 +188,7 @@ class App extends Component {
               currentUser={this.state.user}
               friends={this.state.friends}
               handleAddFriend={this.handleAddFriend}
+              handleDeleteFriend={this.handleDeleteFriend}
             /> : <Redirect to="/login" /> 
           }
         />

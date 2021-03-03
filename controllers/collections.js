@@ -54,7 +54,7 @@ function addNewResource(req, res){
 }
 
 function deleteResource(req, res){
-  console.log('this is the delete controller function')
+  // console.log('this is the delete controller function')
   Collection.findById(req.body.collection._id)
   .populate('resources')
   .then((collection)=>{
