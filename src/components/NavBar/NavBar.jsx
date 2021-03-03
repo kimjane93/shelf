@@ -12,7 +12,6 @@ const NavBar = ({ user, handleLogout }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ml-auto">
-            <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
             <a className="nav-item nav-link" href="/addresource">Add Resource</a>
             <a className="nav-item nav-link" href="/addcollection">Add Collection</a>
             <a className="nav-item nav-link" href="/search">Search</a>
