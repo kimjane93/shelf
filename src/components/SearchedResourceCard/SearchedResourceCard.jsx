@@ -8,6 +8,7 @@ class ResourceCard extends Component {
   state = {
     resource: this.props.resource,
     comments: this.props.resource.comments,
+    collections: this.props.collections,
     invalidForm: false,
     formData: {
       resource: this.props.resource._id,
@@ -96,8 +97,19 @@ class ResourceCard extends Component {
             {this.props.collections.map((collection)=> (
               // collection.resources.includes(resource._id) ? '' :
               <div>
-                <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
-                <label htmlFor="#collection">{collection.title}</label>
+                {collection.resources.map((resource) => (
+                  <>
+                    {resource._id == this.state.resource._id ? 
+                    <p>Already in Collection</p>
+                  
+                     : 
+                      <div>
+                        <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
+                        <label htmlFor="#collection">{collection.title}</label>
+                      </div>
+                    } 
+                  </>
+                ))}
               </div>
             ))}
             <button type="submit" className="btn btn-success">Add To Collection</button>
