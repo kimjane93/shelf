@@ -94,6 +94,7 @@ class ResourceCard extends Component {
           </div>
           <form ref={this.formRef} onSubmit={this.handleSubmit}>
             {this.props.collections.map((collection)=> (
+              // collection.resources.includes(resource._id) ? '' :
               <div>
                 <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
                 <label htmlFor="#collection">{collection.title}</label>
