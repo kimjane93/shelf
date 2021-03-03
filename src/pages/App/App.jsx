@@ -90,7 +90,9 @@ class App extends Component {
     console.log('this is the add resource to collection function from home page')
     console.log(newResourceCollectionData)
     const collection = await collectionApi.addNewResource(newResourceCollectionData)
+    const collectionIdx = this.state.collections.indexOf(collection._id)
     const collections = this.state.collections.filter(c => c._id !== collection._id)
+    // const collections = this.state.collections.splice(collectionIdx, 1, collection)
     this.setState(
       (state) => ({
         collections: [...collections, collection]
