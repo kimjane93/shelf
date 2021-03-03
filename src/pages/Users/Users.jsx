@@ -13,20 +13,37 @@ class Users extends Component {
   }
 
   render() {
+    let currentUser = this.props.currentUser
     return (
       <>
         <h1>Hello. This is a list of all the users.</h1>
         {this.state.users.map((user) => (
           <div>
-            <p>{user.name} </p>
-            <Link
-              to={{
-                pathname: "/profile",
-                state: { user }
-              }}
-            >
-              {user.name}
-            </Link>
+            {user._id === currentUser._id ? 
+              <div>
+                <p>{user.name} </p>
+                <Link
+                  to={{
+                    pathname: "/myprofile",
+                    state: { user }
+                  }}
+                >
+                  {user.name}
+                </Link>
+              </div>
+            :
+              <div>
+                <p>{user.name} </p>
+                <Link
+                  to={{
+                    pathname: "/profile",
+                    state: { user }
+                  }}
+                >
+                  {user.name}
+                </Link>
+              </div>
+            }
           </div>
         ))}
       </>
