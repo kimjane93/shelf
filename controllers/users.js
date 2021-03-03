@@ -34,12 +34,8 @@ function addFriend(req, res){
 function deleteFriend(req, res){
   User.findById(req.body.currentUser._id)
   .then((user) => {
-    // console.log(user)
-    console.log(user.friends)
-    console.log(req.body.user._id)
     user.friends = user.friends.filter(f => f._id != req.body.user._id)
     user.save()
-    console.log(`Deleted friend: ${user}`)
     res.json(user)
   })
   .catch((err) => {

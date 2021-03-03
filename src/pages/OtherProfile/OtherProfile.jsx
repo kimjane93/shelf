@@ -16,15 +16,11 @@ class OtherProfile extends Component {
 
   async componentDidMount() {
     const collections = await collectionApi.getOtherCollections(this.props.location.state.user)
-    // console.log(collections)
     this.setState({ collections });
   }
 
   handleAddSubmit = (e) => {
     this.props.handleAddFriend(this.state.formData)
-    // this.setState((state) => ({
-
-    // }))
   }
 
   handleDeleteSubmit = (e) => {
@@ -37,18 +33,17 @@ class OtherProfile extends Component {
     let currentUser = this.props.currentUser
     return ( 
       <>
-        <h1>This is another Profile Page!</h1>
-        <p>{user.name}</p>
+        <h1>{user.name}'s Profile</h1>
         <p>{user.description}</p>
         {this.props.friends.includes(user._id) ? 
           <div>
             <p>Friends already</p> 
-            <button onClick={this.handleDeleteSubmit}>Delete Friend</button>
+            <button className="btn btn-danger" onClick={this.handleDeleteSubmit}>Delete Friend</button>
           </div>
         : 
           <div>
             <p>Not friends yet</p>
-            <button onClick={this.handleAddSubmit}>Add Friend</button>
+            <button className="btn btn-success" onClick={this.handleAddSubmit}>Add Friend</button>
           </div>
         }
         <div className="collectionList">

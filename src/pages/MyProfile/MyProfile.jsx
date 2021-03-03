@@ -4,23 +4,23 @@ import CollectionCard from '../../components/CollectionCard/CollectionCard'
 import './MyProfile.css'
 
 function MyProfile({collections, user}){
-    return (
-        <>
-          <h1>Profile</h1>
-          <div>
-            <p>{user.name}</p>
-            <p>{user.bio}</p>
-          </div>
-          <div className="collectionList">
-            {collections.map((collection) => (
-                <CollectionCard
-                  collection={collection}
-                  user={user} 
-                  />
-            ))}
-          </div>
-        </>
-    )
+  return (
+    <>
+      <h1>Profile</h1>
+      <div>
+        <p>{user.name}</p>
+        <p>{user.bio}</p>
+      </div>
+      <div className="collectionList">
+        {collections.map((collection) => (
+            <CollectionCard
+              collection={collection}
+              user={user} 
+            />
+        ))}
+      </div>
+    </>
+  )
 }
 
 
