@@ -19,12 +19,11 @@ class HomePage extends Component{
     render (){
         return(
             <>
-            {this.state.results.map((result)=>{
-            <div>
-               {console.log(result.title)}
-               {/* {result.title} */}
-            </div>
-            })}
+            <ul>
+             {this.state.results.map((result)=> (
+                 <li>{result.title}</li>
+             ))}
+            </ul>
             </>
         )
     }

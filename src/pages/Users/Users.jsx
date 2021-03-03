@@ -21,7 +21,6 @@ class Users extends Component {
           <div>
             {user._id === currentUser._id ? 
               <div>
-                <p>{user.name} </p>
                 <Link
                   to={{
                     pathname: "/myprofile",
@@ -33,7 +32,6 @@ class Users extends Component {
               </div>
             :
               <div>
-                <p>{user.name} </p>
                 <Link
                   to={{
                     pathname: "/profile",

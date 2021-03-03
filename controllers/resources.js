@@ -50,6 +50,7 @@ function getRandom(req, res){
   Resource.aggregate([{ $sample: { size : 4 } }])
   .then((resources) => {
     res.json(resources)
+    console.log(resources)
   })
   .catch((err) => {
     res.json(err)
