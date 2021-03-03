@@ -3,22 +3,17 @@ import { Link } from "react-router-dom";
 // import * as resourceApi from "../../services/resourceApi";
 // import AddComment from '../AddComment/AddComment'
 import "./SearchedResourceCard.css";
-
 class ResourceCard extends Component {
   state = {
     resource: this.props.resource,
     comments: this.props.resource.comments,
-    collections: this.props.collections,
     invalidForm: false,
     formData: {
       resource: this.props.resource._id,
       collection: "",
     },
   };
-
   formRef = React.createRef()
-
-
   handleChange = (e) => {
     const formData = {
       ...this.state.formData, [e.target.name]: e.target.value
@@ -28,15 +23,12 @@ class ResourceCard extends Component {
       invalidForm: !this.formRef.current.checkValidity()
     })
   }
-
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.handleAddResourceToCollection(this.state.formData)
   }
-
   render(props) {
     let resource = this.state.resource;
-
     return (
       <>
         <div
@@ -95,22 +87,17 @@ class ResourceCard extends Component {
           </div>
           <form ref={this.formRef} onSubmit={this.handleSubmit}>
             {this.props.collections.map((collection)=> (
-              // collection.resources.includes(resource._id) ? '' :
-              <div>
-                {collection.resources.map((resource) => (
-                  <>
-                    {resource._id == this.state.resource._id ? 
-                    <p>Already in Collection</p>
-                  
-                     : 
-                      <div>
-                        <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
-                        <label htmlFor="#collection">{collection.title}</label>
-                      </div>
-                    } 
-                  </>
-                ))}
+              <>
+              {collection.resources.some((res)=> res._id == resource._id) 
+                ? 
+                <p>Already in {collection.title}</p>
+                :
+                <div>
+                <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
+                <label htmlFor="#collection">{collection.title}</label>
               </div>
+              }
+              </>
             ))}
             <button type="submit" className="btn btn-success">Add To Collection</button>
           </form>
@@ -119,5 +106,4 @@ class ResourceCard extends Component {
     );
   }
 }
-
 export default ResourceCard;
