@@ -27,7 +27,8 @@ class App extends Component {
     user: authService.getUser(),
     collections: [],
     newResource: "",
-    currentCollection: null
+    currentCollection: null,
+    friends: []
   };
 
   async componentDidMount(){
@@ -92,6 +93,17 @@ class App extends Component {
       currentCollection: collection,
       collections: collections
     }))
+  }
+
+  handleAddFriend = async(formData) => {
+    const currentUser = await userService.addFriend(formData)
+    console.log(`This is a miracle: ${currentUser}`)
+    console.log(currentUser)
+    console.log(currentUser.friends)
+    this.setState((state) => ({
+      user: currentUser, 
+      friends: [...currentUser.friends]}
+    ))
   }
 
 
@@ -163,6 +175,8 @@ class App extends Component {
             <OtherProfile 
               location={location}
               currentUser={this.state.user}
+              friends={this.state.friends}
+              handleAddFriend={this.handleAddFriend}
             /> : <Redirect to="/login" /> 
           }
         />

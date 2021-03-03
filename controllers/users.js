@@ -11,8 +11,8 @@ function index(req, res) {
 }
 
 function addFriend(req, res){
+  console.log('hi')
   console.log(req.body)
-  console.log(req.params.id)
   User.findById(req.body.currentUser._id)
   .then((user) => {
     user.friends.push(req.body.user._id)

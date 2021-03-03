@@ -20,25 +20,29 @@ class OtherProfile extends Component {
     this.setState({ collections });
   }
 
-  handleAddFriend = async (formData) => {
-    const currentUser = await userApi.addFriend(this.state.formData)
-    console.log(`This is a miracle: ${currentUser}`)
-    this.setState({currentUser: currentUser})
+  
+
+  handleSubmit = (e) => {
+    console.log('I have made it to handle submit')
+    this.props.handleAddFriend(this.state.formData)
+    this.setState((state) => ({
+
+    }))
   }
 
   render() {
     let user = this.props.location.state.user 
-    let currentUser = this.state.currentUser
+    let currentUser = this.props.currentUser
     return ( 
       <>
         <h1>This is another Profile Page!</h1>
         <p>{user.name}</p>
         <p>{user.description}</p>
-        {currentUser.friends.includes(user._id) ? <p>Friends already</p> 
+        {this.props.currentUser.friends.includes(user._id) ? <p>Friends already</p> 
         : 
           <>
             <p>Not friends yet</p>
-            <button onClick={this.handleAddFriend}>Add Friend</button>
+            <button onClick={this.handleSubmit}>Add Friend</button>
           </>
         }
         <div className="collectionList">
