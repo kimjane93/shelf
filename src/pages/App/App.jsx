@@ -64,7 +64,7 @@ class App extends Component {
     this.setState(
       (state) => ({
         collections: [...state.collections, newCollection]
-      }), () =>  this.props.history.push('/profile')
+      }), () =>  this.props.history.push('/myprofile')
     )
   }
 
@@ -143,7 +143,7 @@ class App extends Component {
         }
         />
         <Route 
-          exact path="/profile"
+          exact path="/myprofile"
           render={()=>
           user ? 
             <Profile 
