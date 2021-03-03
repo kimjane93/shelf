@@ -17,6 +17,7 @@ const NavBar = ({ user, handleLogout }) => {
             <a className="nav-item nav-link" href="/addcollection">Add Collection</a>
             <a className="nav-item nav-link" href="/search">Search</a>
             <a className="nav-item nav-link" href="/chat">Chat</a>
+            <a className="nav-item nav-link" href="/users">Other Shelfers</a>
             <a className="nav-item nav-link" href="/myprofile"  aria-disabled="true">My Profile</a>
             <a className="nav-item nav-link" href=" " onClick={handleLogout}>Log Out</a>
           </div>
