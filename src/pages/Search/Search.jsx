@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as resourceApi from '../../services/resourceApi'
-
+import SearchedResourceCard from '../../components/SearchedResourceCard/SearchedResourceCard'
 
 class Search extends Component {
   state = { 
@@ -45,9 +45,13 @@ class Search extends Component {
           <input type="text" name="queryString" value={this.state.formData.queryString} onChange={this.handleChange}/>
           <button className="btn btn-secondary" type="submit" disabled={this.state.invalidForm}>Search</button>
         </form>
-        {this.state.results.map((result) => (
-          <p>{result.title}</p>
-        ))}
+        {this.state.results.map((result)=> (
+                 <SearchedResourceCard 
+                    resource={result}
+                    user={this.props.user}
+                    collections={this.props.collections}
+                 />
+             ))}
       </>
      );
   }
