@@ -212,6 +212,7 @@ class App extends Component {
             <Search
             collections={this.state.collections}
             user={this.state.user}
+            handleAddResourceToCollection={this.handleAddResourceToCollection}
             /> : <Redirect to="/login" /> 
           }
         />

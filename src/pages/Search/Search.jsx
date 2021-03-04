@@ -50,6 +50,7 @@ class Search extends Component {
                     resource={result}
                     user={this.props.user}
                     collections={this.props.collections}
+                    handleAddResourceToCollection={this.props.handleAddResourceToCollection}
                  />
              ))}
       </>
