@@ -209,7 +209,11 @@ class App extends Component {
           exact path="/search"
           render={()=>
           user ? 
-            <Search/> : <Redirect to="/login" /> 
+            <Search
+            collections={this.state.collections}
+            user={this.state.user}
+            handleAddResourceToCollection={this.handleAddResourceToCollection}
+            /> : <Redirect to="/login" /> 
           }
         />
         <Route 
