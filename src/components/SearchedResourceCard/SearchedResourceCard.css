@@ -2,12 +2,16 @@
     border: green 2px solid;
 }
 
-.audio {
+.audio hr{
     border: red 2px solid;
+    width: 50%
 }
 
-.video {
-    border: blue 2px solid;
+.video hr{
+    /* border: blue 2px solid; */
+    width: 50%;
+    color: blue;
+    height: 2px;
 }
 
 .book {

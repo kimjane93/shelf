@@ -86,19 +86,24 @@ class ResourceCard extends Component {
             </div>
           </div>
           <form ref={this.formRef} onSubmit={this.handleSubmit}>
-            {this.props.collections.map((collection)=> (
-              <>
-              {collection.resources.some((res)=> res._id == resource._id) 
-                ? 
-                <p>Already in {collection.title}</p>
-                :
-                <div>
-                <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
-                <label htmlFor="#collection">{collection.title}</label>
-              </div>
-              }
-              </>
-            ))}
+            <div>
+              <select name="collection" id="collection" onChange={this.handleChange}>
+                {this.props.collections.map((collection)=> (
+                  <>
+                    {collection.resources.some((res)=> res._id == resource._id) 
+                      ? 
+                      <option disabled="true" >Already in {collection.title}</option>
+                      :
+                    //   <div>
+                    //   <input id="collection" type="radio" name="collection" value={collection._id} checked={this.state.formData.collection === collection._id} onChange={this.handleChange}/>
+                    //   <label htmlFor="#collection">{collection.title}</label>
+                    // </div>
+                    <option value={collection._id}>{collection.title}</option>
+                    }
+                  </>
+                ))}
+              </select>
+            </div>
             <button type="submit" className="btn btn-success">Add To Collection</button>
           </form>
         </div>
